@@ -1,0 +1,36 @@
+{
+  "name": "CYBERMIND — AI-Powered Cyber Threat Detection",
+  "short_name": "CyberMind",
+  "description": "Analyse suspicious SMS, email, and chat messages with NLP, heuristics, URL inspection, and a local machine-learning classifier.",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#070b16",
+  "theme_color": "#0b1224",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["security", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

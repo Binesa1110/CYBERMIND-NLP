@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CYBERMIND shield logo">
+  <defs>
+    <linearGradient id="cmShield" x1="8" y1="4" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9a8bff"/>
+      <stop offset="0.55" stop-color="#6d5dfc"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="cmCircuit" x1="20" y1="24" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c4bbff"/>
+      <stop offset="1" stop-color="#5fa0ff"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M32 4 56 12.5v16.8c0 13.8-9.3 24.6-24 30.7C17.3 53.9 8 43.1 8 29.3V12.5L32 4Z" fill="url(#cmShield)"/>
+  <path d="M32 9.6 51 16.4v12.9c0 11.4-7.5 20.5-19 25.9-11.5-5.4-19-14.5-19-25.9V16.4L32 9.6Z" fill="#0b1224" opacity="0.9"/>
+
+  <path d="M20.5 32h8.2l3.4-6.1h10.4" fill="none" stroke="url(#cmCircuit)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24.5 38.5h6.2l2.7 4.3h8.9" fill="none" stroke="url(#cmCircuit)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+
+  <circle cx="20.5" cy="32" r="2.7" fill="#8b7bff"/>
+  <circle cx="42.5" cy="25.9" r="3" fill="#4d8dff"/>
+  <circle cx="42.3" cy="42.8" r="2.4" fill="#8b7bff" opacity="0.85"/>
+</svg>

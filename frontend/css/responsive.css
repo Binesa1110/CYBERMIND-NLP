@@ -1,0 +1,254 @@
+/* ==========================================================
+   CYBERMIND — responsive enhancements
+   Base layout is mobile-first; these queries scale it up.
+   Tested target widths: 360, 390, 768, 1024, 1440.
+   ========================================================== */
+
+/* ---------------- Small phones and up ---------------- */
+
+@media (min-width: 420px) {
+  .brand-tagline {
+    font-size: 0.7rem;
+  }
+
+  .hero-actions .btn {
+    flex: 0 1 auto;
+  }
+
+  .scanner-actions .btn {
+    flex: 0 1 auto;
+  }
+}
+
+/* ---------------- Large phones / small tablets ---------------- */
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+
+  .section {
+    padding-block: 3.8rem;
+  }
+
+  .section-tight {
+    padding-block: 2.8rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+
+  .scanner-card {
+    padding: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .transparency-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .history-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .result-footer .btn {
+    flex: none;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------------- Tablets / desktop navigation ---------------- */
+
+@media (min-width: 900px) {
+  :root {
+    --header-height: 76px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .nav-menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2rem;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .nav-link {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.88rem;
+  }
+
+  .theme-toggle {
+    margin-top: 0;
+    margin-left: 0.5rem;
+  }
+
+  .hero {
+    padding-block: 3.6rem 2rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .hero-visual {
+    justify-content: flex-end;
+  }
+
+  .scanner-grid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  .result-summary {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    padding: 1.6rem;
+    gap: 1.6rem;
+  }
+
+  .risk-gauge {
+    width: 140px;
+    height: 140px;
+  }
+
+  .gauge-value {
+    font-size: 2.15rem;
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .split-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .split-head .btn {
+    flex: none;
+    margin-bottom: 0.15rem;
+  }
+}
+
+/* ---------------- Laptops / desktops ---------------- */
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 2rem;
+  }
+
+  .section {
+    padding-block: 4.4rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .step {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .hero-copy {
+    max-width: 700px;
+  }
+
+  .history-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------------- Large desktops ---------------- */
+
+@media (min-width: 1440px) {
+  :root {
+    --container: 1240px;
+  }
+
+  .hero {
+    padding-block: 4.6rem 2.6rem;
+  }
+
+  .hero-grid {
+    gap: 3.5rem;
+  }
+
+  .radar-card {
+    max-width: 410px;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+}
+
+/* ---------------- Short landscape screens ---------------- */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .site-header {
+    position: static;
+  }
+
+  .hero {
+    padding-block: 1.6rem 1rem;
+  }
+
+  .stat-section,
+  .section {
+    padding-block: 2rem;
+  }
+}

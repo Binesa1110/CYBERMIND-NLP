@@ -1,0 +1,33 @@
+text,label
+"Hey, just checking whether you are still available for our meeting at 4 PM.",benign
+"The department has uploaded the revised schedule to the internal portal.",benign
+"Please find the minutes from yesterday's project discussion attached.",benign
+"Your appointment with the service center is confirmed for Thursday.",benign
+"The development team will deploy the update after the maintenance window.",benign
+"Please review the document and send your comments before Friday.",benign
+"Your university registration has been successfully completed.",benign
+"The office will remain closed tomorrow due to scheduled maintenance.",benign
+"Your account has been temporarily disabled. Follow this link to restore access immediately.",phishing
+"We detected unusual activity on your card. Confirm your banking information using the secure page.",phishing
+"Failure to validate your identity within 24 hours will result in account termination.",phishing
+"Security notification: sign in through the attached link to prevent unauthorized access.",phishing
+"Your online banking session requires verification. Enter your credentials to continue.",phishing
+"Your email account has been flagged. Verify your password to avoid permanent suspension.",phishing
+"Confirm your payment information through the provided website to avoid service interruption.",phishing
+"Your account security check is incomplete. Sign in now to complete verification.",phishing
+"You have been selected to receive a large cash reward. Pay the release charge to claim it.",scam
+"A private investment opportunity promises to triple your money within seven days.",scam
+"Send a small transfer today and receive a much larger payment tomorrow.",scam
+"Your phone number was randomly selected for a valuable prize. Pay the delivery charge.",scam
+"You are eligible for an unexpected financial bonus. Provide payment details to receive it.",scam
+"Transfer the registration fee and your guaranteed investment return will be released.",scam
+"You have inherited money from an overseas account. Pay the required administration fee first.",scam
+"Claim your exclusive reward by making a refundable verification payment.",scam
+"Can you send me the six digit code that just arrived on your phone? I need it to finish this for you.",social_engineering
+"The IT administrator asked me to collect your password so I can resolve the issue.",social_engineering
+"Your supervisor needs your authentication code immediately for an urgent request.",social_engineering
+"Please share the verification number from your phone so I can complete the transaction.",social_engineering
+"I am helping the support team with your account. Send me the OTP to confirm ownership.",social_engineering
+"Your colleague cannot access the system and asked for your login credentials.",social_engineering
+"Give me your security code and I will complete the verification on your behalf.",social_engineering
+"The administrator requested your account password so the problem can be fixed immediately.",social_engineering

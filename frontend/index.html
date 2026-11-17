@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERMIND &mdash; AI-Powered Cyber Threat Detection</title>
+  <meta
+    name="description"
+    content="CYBERMIND analyses suspicious SMS messages, emails, and chat texts using NLP, heuristics, URL inspection, and machine learning."
+  >
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fb" id="themeColorMeta">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/gmail.css">
+
+  <!-- Apply the saved theme before first paint to avoid a flash. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("cybermind:theme:v1");
+        var theme = saved === "light" || saved === "dark"
+          ? saved
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="CYBERMIND home">
+        <img src="assets/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">CYBERMIND</span>
+          <span class="brand-tagline">Cyber Threat Detection</span>
+        </span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        aria-label="Open navigation menu"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#scanner">Scanner</a>
+        <a class="nav-link" href="#results">Results</a>
+        <a class="nav-link" href="#history">History</a>
+        <a class="nav-link" href="#gmail">Email Monitor</a>
+        <a class="nav-link" href="#how-it-works">How It Works</a>
+        <a class="nav-link" href="#about">About</a>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+          title="Toggle light / dark theme"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5l1.5 1.5M17 17l1.5 1.5M18.5 5.5L17 7M7 17l-1.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+            <path d="M20.2 14.3A8.2 8.2 0 0 1 9.7 3.8a8.4 8.4 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <span class="theme-toggle-text" id="themeToggleText">Dark</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============================================
+         HOME / DASHBOARD
+         ============================================ -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            AI-powered threat analysis
+          </p>
+
+          <h1>
+            <span class="hero-brand">CYBERMIND</span>
+            <span class="hero-tagline">AI-Powered Cyber Threat Detection</span>
+          </h1>
+
+          <p class="hero-lead">
+            Paste a suspicious SMS, WhatsApp message, or email and get an
+            instant assessment powered by natural language processing,
+            heuristic security rules, URL inspection, and a trained
+            machine-learning classifier.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#scanner" id="scanCta">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                <path d="M8.5 12h7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+              </svg>
+              Scan a Message
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#how-it-works">
+              How It Works
+            </a>
+          </div>
+
+          <div class="status-row">
+            <span class="status-pill status-checking" id="backendStatus" role="status">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="backendStatusText">Checking backend&hellip;</span>
+            </span>
+            <span class="status-note">Messages are analysed, not stored on the server.</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="radar-card">
+            <div class="radar-card-head">
+              <span class="radar-title">Threat Signal</span>
+              <span class="radar-live"><span class="pulse-dot"></span>LIVE</span>
+            </div>
+
+            <div class="radar">
+              <span class="radar-ring ring-1"></span>
+              <span class="radar-ring ring-2"></span>
+              <span class="radar-ring ring-3"></span>
+              <span class="radar-sweep"></span>
+              <span class="radar-blip blip-1"></span>
+              <span class="radar-blip blip-2"></span>
+              <span class="radar-blip blip-3"></span>
+              <span class="radar-core"></span>
+            </div>
+
+            <div class="radar-metrics">
+              <div class="radar-metric">
+                <span class="metric-label">NLP Engine</span>
+                <span class="metric-value">Active</span>
+              </div>
+              <div class="radar-metric">
+                <span class="metric-label">ML Model</span>
+                <span class="metric-value">Loaded</span>
+              </div>
+              <div class="radar-metric">
+                <span class="metric-label">URL Scan</span>
+                <span class="metric-value">Enabled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature cards -->
+    <section class="section section-tight" aria-labelledby="featuresTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">What CYBERMIND does</p>
+          <h2 id="featuresTitle">Four analysis layers, one clear verdict</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="card feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4 5h16M4 12h10M4 19h7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                <circle cx="18" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.9"/>
+              </svg>
+            </span>
+            <h3>NLP Analysis</h3>
+            <p>
+              Tokenisation, stop-word removal, stemming, lemmatisation,
+              part-of-speech tagging, and named-entity recognition with NLTK.
+            </p>
+          </article>
+
+          <article class="card feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="6" cy="6" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="18" cy="7" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="18" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8.2 7.1 10 15.7M15.9 8.6l-3 7.2M8.4 6.4l7.2.4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <h3>Machine Learning</h3>
+            <p>
+              A TF-IDF and logistic-regression classifier predicts benign,
+              phishing, scam, or social-engineering intent with probabilities.
+            </p>
+          </article>
+
+          <article class="card feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M7 4.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19V6a1.5 1.5 0 0 1 1-1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 12h6M9 15.5h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M14 4.5V9h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Keyword Detection</h3>
+            <p>
+              Security indicators such as urgency, credential requests,
+              financial lures, threats, and social-engineering language.
+            </p>
+          </article>
+
+          <article class="card feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M3.7 12h16.6M12 3.5c2.3 2.4 3.4 5.4 3.4 8.5S14.3 18.1 12 20.5C9.7 18.1 8.6 15.1 8.6 12S9.7 5.9 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </span>
+            <h3>URL Analysis</h3>
+            <p>
+              Extracts links and checks for missing HTTPS, IP-address hosts,
+              excessive subdomains, long URLs, and suspicious terms.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         MESSAGE SCANNER
+         ============================================ -->
+    <section class="section" id="scanner" aria-labelledby="scannerTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Scanner</p>
+          <h2 id="scannerTitle">Scan a suspicious message</h2>
+          <p class="section-lead">
+            Paste the full message, including any links. The text is sent to
+            the CYBERMIND backend for analysis and is not stored there.
+          </p>
+        </div>
+
+        <div class="scanner-grid">
+          <form class="card scanner-card" id="scanForm" novalidate>
+            <div class="field-head">
+              <label for="messageInput">Message to analyse</label>
+              <span class="counter" id="charCount">0 / 5000</span>
+            </div>
+
+            <textarea
+              id="messageInput"
+              name="message"
+              class="message-input"
+              rows="8"
+              maxlength="5000"
+              placeholder="Paste the suspicious SMS, WhatsApp message, email, or text here&hellip;"
+              autocomplete="off"
+              spellcheck="true"
+              aria-describedby="inputHint formError"
+            ></textarea>
+
+            <p class="field-hint" id="inputHint">
+              Do not include passwords, OTPs, PINs, or banking credentials.
+            </p>
+
+            <div class="sample-row" aria-label="Sample messages">
+              <span class="sample-label">Try a sample:</span>
+              <button
+                class="chip-button"
+                type="button"
+                data-sample="phishing"
+                data-sample-text="Your bank account will be blocked. Click here to verify your password immediately."
+              >Phishing</button>
+              <button
+                class="chip-button"
+                type="button"
+                data-sample="scam"
+                data-sample-text="Congratulations! You won a lottery. Pay a processing fee to receive your prize."
+              >Scam</button>
+              <button
+                class="chip-button"
+                type="button"
+                data-sample="benign"
+                data-sample-text="Hi, are we meeting for lunch tomorrow?"
+              >Benign</button>
+            </div>
+
+            <p class="form-error" id="formError" role="alert" hidden></p>
+
+            <div class="scanner-actions">
+              <button class="btn btn-primary" type="submit" id="analyzeBtn">
+                <span class="btn-spinner" id="analyzeSpinner" aria-hidden="true"></span>
+                <svg class="btn-icon" id="analyzeIcon" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false">
+                  <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.9"/>
+                  <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                </svg>
+                <span id="analyzeBtnText">Analyze Message</span>
+              </button>
+              <button class="btn btn-ghost" type="button" id="clearBtn">
+                Clear
+              </button>
+            </div>
+          </form>
+
+          <aside class="card side-card" aria-labelledby="tipsTitle">
+            <h3 id="tipsTitle">Before you scan</h3>
+            <ul class="check-list">
+              <li>Include the whole message and any links.</li>
+              <li>Remove personal names or account numbers if you prefer.</li>
+              <li>Never share passwords, OTPs, or card details.</li>
+              <li>Use the sample buttons to see how results look.</li>
+            </ul>
+
+            <div class="privacy-box">
+              <strong>Privacy</strong>
+              <p>
+                Messages are processed in memory by the backend and are not
+                stored on the server. Scan history is kept only in this
+                browser&rsquo;s local storage.
+              </p>
+            </div>
+
+            <div class="mini-disclaimer">
+              Automated analysis can be wrong. Always verify unexpected
+              requests independently.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         RESULTS
+         ============================================ -->
+    <section class="section" id="results" aria-labelledby="resultsTitle" hidden>
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Analysis</p>
+          <h2 id="resultsTitle">Threat analysis results</h2>
+        </div>
+
+        <div id="resultStatus" class="sr-only" role="status" aria-live="polite"></div>
+        <div id="resultContent" class="result-content"></div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         HISTORY
+         ============================================ -->
+    <section class="section" id="history" aria-labelledby="historyTitle">
+      <div class="container">
+        <div class="section-head split-head">
+          <div>
+            <p class="eyebrow">Local history</p>
+            <h2 id="historyTitle">Scan history</h2>
+            <p class="section-lead">
+              Previous scans are saved only in this browser. Nothing is
+              uploaded to a history server.
+            </p>
+          </div>
+          <button class="btn btn-ghost btn-sm" type="button" id="clearHistoryBtn">
+            Clear history
+          </button>
+        </div>
+
+        <div class="privacy-note" role="note">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+            <path d="M12 3.5 19 6v5.4c0 4.3-2.7 7.6-7 9.1-4.3-1.5-7-4.8-7-9.1V6l7-2.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M9.4 12.1 11.2 14l3.6-3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Stored locally in this browser only. Clearing browser data removes it.</span>
+        </div>
+
+        <div id="historyList" class="history-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         OPTIONAL GMAIL MONITOR
+         ============================================ -->
+    <section class="section gmail-section" id="gmail" aria-labelledby="gmailTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Optional email protection</p>
+          <h2 id="gmailTitle">Gmail security monitor</h2>
+          <p class="section-lead">
+            Connect a Gmail account with read-only access. Monitoring stays
+            off until you explicitly enable it.
+          </p>
+        </div>
+
+        <div class="gmail-privacy privacy-note" role="note">
+          <strong>Privacy:</strong>
+          When enabled, new Inbox messages are analyzed using the existing
+          CYBERMIND engine. Message bodies and attachments are not saved.
+          Sender, subject, extracted URLs, attachment metadata, and analysis
+          results are stored in the local Gmail database. You can pause
+          monitoring or disconnect at any time.
+        </div>
+
+        <p id="gmailStatus" class="gmail-status" role="status" aria-live="polite">
+          Checking Gmail integration status&hellip;
+        </p>
+
+        <div class="gmail-actions" aria-label="Gmail monitoring actions">
+          <button class="btn btn-primary" type="button" id="gmailConnectBtn" hidden>
+            Connect Gmail
+          </button>
+          <label class="gmail-consent" id="gmailConsentWrap" hidden>
+            <input type="checkbox" id="gmailConsent">
+            <span>
+              I understand what is analyzed and stored, and I want to enable
+              monitoring for new Inbox messages.
+            </span>
+          </label>
+          <button class="btn btn-primary" type="button" id="gmailEnableBtn" hidden disabled>
+            Enable monitoring
+          </button>
+          <button class="btn btn-ghost" type="button" id="gmailPauseBtn" hidden>
+            Pause monitoring
+          </button>
+          <button class="btn btn-ghost" type="button" id="gmailRefreshBtn" hidden>
+            Refresh alerts
+          </button>
+          <button class="btn btn-ghost" type="button" id="gmailClearBtn" hidden>
+            Clear alerts
+          </button>
+          <button class="btn btn-danger" type="button" id="gmailDisconnectBtn" hidden>
+            Disconnect Gmail
+          </button>
+        </div>
+
+        <div class="gmail-stat-grid" id="gmailStatistics" hidden></div>
+        <div class="gmail-alert-list" id="gmailAlerts" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS
+         ============================================ -->
+    <section class="section" id="how-it-works" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Pipeline</p>
+          <h2 id="howTitle">How the analysis works</h2>
+          <p class="section-lead">
+            This describes the actual implementation in this project, not a
+            generic marketing pipeline.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-number">1</span>
+            <div class="step-body">
+              <h3>Message submitted</h3>
+              <p>
+                The browser sends the text to <code>POST /analyze</code>.
+                The backend validates it and enforces a maximum length.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-number">2</span>
+            <div class="step-body">
+              <h3>Text preprocessing</h3>
+              <p>
+                NLTK tokenises the text, removes URLs and stop words, then
+                produces stemmed and lemmatised tokens, POS tags, and named
+                entities.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-number">3</span>
+            <div class="step-body">
+              <h3>Keyword and indicator analysis</h3>
+              <p>
+                TF-IDF extracts important terms. Rule-based patterns detect
+                urgency, credential requests, financial lures, threats,
+                scams, and social-engineering language.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-number">4</span>
+            <div class="step-body">
+              <h3>Machine-learning classification</h3>
+              <p>
+                The trained model &mdash; TF-IDF features plus logistic
+                regression &mdash; returns a predicted class and a
+                probability for each class.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-number">5</span>
+            <div class="step-body">
+              <h3>URL analysis</h3>
+              <p>
+                When links are present, heuristics check the scheme, hostname,
+                length, subdomain count, and suspicious terms. No external
+                reputation service is called.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-number">6</span>
+            <div class="step-body">
+              <h3>Threat assessment</h3>
+              <p>
+                The decision engine combines heuristic evidence, ML
+                confidence, URL indicators, and security indicators into a
+                final threat, a 0&ndash;100 risk score, and a risk level.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="card transparency-card">
+          <h3>Implemented vs. not implemented</h3>
+          <div class="transparency-grid">
+            <div>
+              <h4>Implemented in this project</h4>
+              <ul class="check-list">
+                <li>NLTK preprocessing and sentiment (VADER)</li>
+                <li>TF-IDF keyword extraction and security indicators</li>
+                <li>Local trained ML classifier</li>
+                <li>URL heuristic inspection</li>
+                <li>Heuristic + ML decision fusion</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Not implemented</h4>
+              <ul class="cross-list">
+                <li>External threat-intelligence or reputation feeds</li>
+                <li>Domain age, WHOIS, or certificate checks</li>
+                <li>Attachment, file, or malware scanning</li>
+                <li>Browser-extension or real-time inbox monitoring</li>
+                <li>Deep-learning or large-language-model analysis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT
+         ============================================ -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">About</p>
+          <h2 id="aboutTitle">About CyberMind NLP</h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <h3>Project objective</h3>
+            <p>
+              CyberMind NLP is an educational cybersecurity text-analysis
+              project. It helps users examine suspicious messages by combining
+              classical NLP, transparent heuristic rules, URL inspection, and
+              a locally trained machine-learning model.
+            </p>
+            <p>
+              It is designed to explain <em>why</em> a message looks risky by
+              showing the signals that contributed to the assessment.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Technologies used</h3>
+            <ul class="tech-list">
+              <li><span>Backend</span> Python, FastAPI, Uvicorn</li>
+              <li><span>NLP</span> NLTK, scikit-learn TF-IDF</li>
+              <li><span>ML</span> Logistic Regression (scikit-learn)</li>
+              <li><span>Model file</span> joblib</li>
+              <li><span>Frontend</span> HTML5, CSS3, vanilla JavaScript</li>
+              <li><span>Storage</span> Browser localStorage</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>NLP &amp; machine learning overview</h3>
+            <p>
+              Text is normalised and tokenised, then converted into TF-IDF
+              n-gram features. The classifier estimates probabilities for
+              four classes: benign, phishing, scam, and social engineering.
+            </p>
+            <p>
+              Heuristic rules and URL indicators provide independent evidence.
+              The decision engine blends these signals; the result is a
+              transparent assessment, not a guarantee.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Cybersecurity threat detection</h3>
+            <p>
+              Social-engineering messages often combine urgency, authority,
+              fear, and a request to click, pay, or disclose credentials.
+              CyberMind looks for those patterns and highlights them, so you
+              can verify the sender through an independent, official channel.
+            </p>
+            <p class="muted">
+              No accuracy percentage, certification, or external dataset is
+              claimed here. Performance depends on the bundled training data
+              and the message being analysed.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <div>
+          <strong>CYBERMIND</strong>
+          <p>AI-Powered Cyber Threat Detection</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#scanner">Scanner</a>
+        <a href="#history">History</a>
+        <a href="/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="disclaimer">
+        <strong>Disclaimer:</strong> CyberMind provides automated threat
+        assessments for informational purposes. Results may be incorrect.
+        Always independently verify suspicious communications and never share
+        passwords, OTPs, or banking credentials.
+      </p>
+      <p class="footer-meta">
+        CYBERMIND-NLP v2.0 &middot; Local browser history &middot; No message
+        storage on the server
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/gmail.js"></script>
+</body>
+</html>

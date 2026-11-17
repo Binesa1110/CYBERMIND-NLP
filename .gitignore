@@ -1,0 +1,66 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Gmail monitor local token / alert database
+*.sqlite
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+*.db
+*.db-shm
+*.db-wal
+
+# OAuth credentials and private keys
+credentials*.json
+client_secret*.json
+token*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Local backups and archives
+backup/
+backups/
+_backup*/
+*_backup*
+*-backup-*
+*.bak
+*.backup
+*.zip
+# Broken Git repository backup
+.git_broken/
